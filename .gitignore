@@ -25,6 +25,8 @@ game/log.txt
 # See tools/audiogen/*.py headers for exact package versions used.
 tools/audiogen/.venv/
 tools/audiogen/.venv-sfx/
+tools/audiogen/__pycache__/
+**/__pycache__/
 
 # Unrelated project that happens to live alongside this one - see
 # scheuerhof_valkyrie/ (copied out) for the actual working copy.
