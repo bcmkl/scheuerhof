@@ -1,0 +1,34 @@
+# Ren'Py SDK (~350 MB, third-party download, not project source).
+# Get it from https://www.renpy.org/latest.html - same version: 8.5.3
+renpy-8.5.3-sdk/
+
+# Compiled Ren'Py bytecode - regenerated automatically from .rpy sources.
+*.rpyc
+*.rpymc
+game/cache/
+
+# Player save data - local state, not source.
+game/saves/
+
+# Build output (zips/tar.bz2) - regenerate via the Ren'Py launcher's
+# "Build & Distribute" or `renpy.sh launcher distribute <project>`.
+scheuerhof-0.8-dists/
+
+# Runtime logs.
+log.txt
+errors.txt
+game/log.txt
+
+# Audio-generation tooling: keep the scripts, drop the Python venvs
+# (~2 GB, includes a full torch install). Recreate with:
+#   python3 -m venv tools/audiogen/.venv && pip install torch torchaudio transformers ...
+# See tools/audiogen/*.py headers for exact package versions used.
+tools/audiogen/.venv/
+tools/audiogen/.venv-sfx/
+
+# Unrelated project that happens to live alongside this one - see
+# scheuerhof_valkyrie/ (copied out) for the actual working copy.
+valkyrie-quest/
+
+# OS cruft.
+.DS_Store
