@@ -203,6 +203,10 @@ init python:
     ## Log-Dateien als Geschwister von game/ - die gehören nicht ins Spiel.
     build.classify('renpy-*-sdk/**', None)
     build.classify('scheuerhof-*-dists/**', None)
+    ## web_build erzeugt zusätzlich eine Zip-Kopie des Zielordners direkt im
+    ## Projekt-Root (Geschwister der dists/-Mappe, kein Unterordner) - auch die
+    ## gehört nicht ins Spiel.
+    build.classify('scheuerhof-*-dists.zip', None)
     build.classify('errors.txt', None)
     build.classify('log.txt', None)
 

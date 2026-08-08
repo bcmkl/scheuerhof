@@ -16,6 +16,15 @@ Dieses Repository enthält nur den Projektquellcode - nicht die Ren'Py-Engine se
 
 Icons (`icon.icns`, `icon.ico`) liegen bereits im Projekt-Root und werden automatisch eingebunden.
 
+## Plattform-Status
+
+Fertige Builds gibt es unter [Releases](../../releases):
+
+- **macOS / Windows** - fertig gebaut, direkt spielbar.
+- **Web (HTML5)** - fertig gebaut. Zum Selbst-Hosten den Inhalt der zip auf einen Webserver legen (die progressive-download-Dateien brauchen keinen speziellen Server, ein einfacher statischer Host reicht).
+- **Android** - noch nicht gebaut. Braucht einmalig das Android SDK/NDK (über den Ren'Py-Launcher: Android-Reiter → "Install SDK", inkl. Lizenz-Akzeptierung und Signierschlüssel).
+- **iOS** - nicht automatisierbar ohne volles Xcode (nicht nur Command Line Tools) und ein Apple-Developer-Konto zum Signieren. Ren'Py erzeugt dafür nur ein Xcode-Projekt (`renios`), das dann manuell in Xcode gebaut/signiert werden muss.
+
 ## Audio-Tooling
 
 `tools/audiogen/` enthält die Skripte, mit denen die Hintergrundmusik und Soundeffekte lokal generiert wurden (siehe Abschnitt "Credits & Lizenzen" unten). Die Python-Umgebungen selbst sind nicht Teil des Repos (siehe `.gitignore`); Setup-Hinweise stehen in den Skript-Headern:
