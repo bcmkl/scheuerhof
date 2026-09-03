@@ -34,7 +34,14 @@ SFX = [
     ("sfx_door_creak", "old wooden door creaking open slowly, horror atmosphere", 4),
     ("sfx_wind_gust", "cold eerie wind gust through trees", 5),
     ("sfx_water_drip", "water dripping echo in an abandoned building, horror ambience", 5),
-    ("sfx_whisper_ghostly", "faint ghostly unintelligible whisper, horror", 4),
+    # Der alte Prompt ("faint ghostly unintelligible whisper, horror") hat
+    # AudioLDM2 zu einem fast reinen Sinuston bei 2,3 kHz verleitet statt zu
+    # Atemgeräusch - das ist der schrillste Effekt im Bestand. soften_sfx.py
+    # kann ihn nur leiser machen, nicht reparieren. Bei einer Neugenerierung
+    # zielt dieser Prompt bewusst auf Rauschanteil statt Tonhöhe.
+    ("sfx_whisper_ghostly", "breathy airy human whispering, close to microphone, "
+     "unintelligible, broadband noise character, no tone, no ringing, no music, "
+     "soft and dry", 4),
     ("sfx_heartbeat_tense", "slow tense human heartbeat, horror tension build", 5),
     ("sfx_page_turn", "old book page turning, paper rustle, archive room", 3),
     ("sfx_bell_distant", "distant church bell tolling once, muffled and ominous", 4),

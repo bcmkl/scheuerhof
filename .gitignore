@@ -12,12 +12,19 @@ game/saves/
 
 # Build output (zips/tar.bz2) - regenerate via the Ren'Py launcher's
 # "Build & Distribute" or `renpy.sh launcher distribute <project>`.
-scheuerhof-0.8-dists/
+scheuerhof-*-dists/
+scheuerhof-*-dists.zip
+scheuerhof-*-release/
 
 # Runtime logs.
 log.txt
 errors.txt
 game/log.txt
+
+# Ren'Py-Dialogexport - Zwischenprodukt, jederzeit neu erzeugbar mit
+#   renpy.sh . dialogue None
+dialogue.tab
+dialogue.txt
 
 # Audio-generation tooling: keep the scripts, drop the Python venvs
 # (~2 GB, includes a full torch install). Recreate with:
@@ -25,6 +32,12 @@ game/log.txt
 # See tools/audiogen/*.py headers for exact package versions used.
 tools/audiogen/.venv/
 tools/audiogen/.venv-sfx/
+
+# Sprachausgabe-Tooling: Skripte bleiben, venv und die heruntergeladenen
+# Piper-Stimmmodelle (~200 MB) nicht. Modelle holt generate_voice.py bei
+# Bedarf selbst nach.
+tools/voicegen/.venv/
+tools/voicegen/.voices/
 tools/audiogen/__pycache__/
 **/__pycache__/
 

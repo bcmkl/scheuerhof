@@ -29,7 +29,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "0.8"
+define config.version = "0.9"
 
 
 ## Text that is placed on the game's about screen. To insert a blank line
@@ -43,6 +43,7 @@ Bilder erstellt mit Flux2 Klein
 Story ergänzt mit Unterstützung von Claude Code
 Programmierung umgesetzt mit Unterstützung von Claude Code
 Musik und Soundeffekte lokal generiert mit KI-Modellen (MusicGen und AudioLDM2)
+Deutsche Sprachausgabe lokal generiert mit Piper (Stimmen: Thorsten-Voice, M-AILABS)
 
 Die Geschichte enthält Elemente der realen Historie des Scheuerhofs. Namentliche Nennungen realer Personen und Firmen wurden aus Pietätsgründen geändert, um keine Persönlichkeitsrechte zu verletzen.""")
 
@@ -54,7 +55,7 @@ Die Geschichte enthält Elemente der realen Historie des Scheuerhofs. Namentlich
 define build.name = "scheuerhof"
 
 ## Change the version used by the build system.
-define build.version = "0.8"
+define build.version = "0.9"
 
 ## Sounds and music ############################################################
 
@@ -63,7 +64,8 @@ define build.version = "0.8"
 
 define config.has_sound = True
 define config.has_music = True
-define config.has_voice = False
+## Die deutschen Dialoge sind vertont (siehe game/voice.rpy).
+define config.has_voice = True
 
 
 ## To allow the user to play a test sound on the sound or voice channel,
@@ -153,6 +155,8 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
+## Bleibt bewusst auf 0.8: 0.9 fügt nur die Sprachausgabe hinzu, die
+## Handlung ist unverändert. So finden Spielstände aus 0.8 sich weiter.
 define config.save_directory = "scheuerhof-0.8"
 
 
