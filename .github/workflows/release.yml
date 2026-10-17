@@ -99,10 +99,11 @@ jobs:
         shell: pwsh
         run: |
           $destination = Join-Path $env:RUNNER_TEMP "dists"
-          & "$env:RENPY_SDK_ROOT\lib\py3-windows-x86_64\renpy.exe" "$env:RENPY_SDK_ROOT\launcher" distribute `
-            "$env:GITHUB_WORKSPACE" --package win --dest $destination
-          if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
-            throw "Ren'Py Windows build failed with exit code $LASTEXITCODE."
+          $renpy = Join-Path $env:RENPY_SDK_ROOT "lib\py3-windows-x86_64\renpy.exe"
+          $arguments = "`"$env:RENPY_SDK_ROOT\launcher`" distribute `"$env:GITHUB_WORKSPACE`" --package win --dest `"$destination`""
+          $process = Start-Process -FilePath $renpy -ArgumentList $arguments -Wait -PassThru
+          if ($process.ExitCode -ne 0) {
+            throw "Ren'Py Windows build failed with exit code $($process.ExitCode)."
           }
           $asset = Join-Path $destination "scheuerhof-$env:VERSION-win.zip"
           if (-not (Test-Path $asset)) {
