@@ -95,7 +95,9 @@ Ren'Py sucht zu jeder Dialogzeile eine Datei, die nach der Translate-ID der
 Zeile benannt ist - dieselben IDs, die auch die Übersetzungen in `game/tl/`
 verwenden. Im Skript selbst steht deshalb **kein einziges** `voice`-Statement,
 und fehlende Dateien führen nicht zum Fehler, sondern nur zu einer stummen
-Zeile. Vertont ist nur Deutsch; in den übrigen Sprachen bleibt es still.
+Zeile. Vertont ist nur Deutsch; in den übrigen Sprachen bleibt es still. Die
+Sprachausgabe ist standardmäßig ausgeschaltet und lässt sich in den
+Einstellungen über den Regler „Sprachlautstärke“ aktivieren.
 
 Erzeugen und prüfen:
 

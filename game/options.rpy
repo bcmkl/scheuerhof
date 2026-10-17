@@ -66,6 +66,8 @@ define config.has_sound = True
 define config.has_music = True
 ## Die deutschen Dialoge sind vertont (siehe game/voice.rpy).
 define config.has_voice = True
+## Sprachausgabe muss in den Einstellungen bewusst aktiviert werden.
+define config.default_voice_volume = 0.0
 
 
 ## To allow the user to play a test sound on the sound or voice channel,
