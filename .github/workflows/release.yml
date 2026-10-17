@@ -60,7 +60,7 @@ jobs:
         env:
           VERSION: ${{ needs.validate.outputs.version }}
         run: |
-          "$RENPY_SDK_ROOT/renpy.sh" "$RENPY_SDK_ROOT/launcher" distribute "$GITHUB_WORKSPACE" \
+          "$RENPY_SDK_ROOT/renpy.app/Contents/MacOS/renpy" "$RENPY_SDK_ROOT/launcher" distribute "$GITHUB_WORKSPACE" \
             --package mac --dest "$RUNNER_TEMP/dists"
           asset="$RUNNER_TEMP/dists/scheuerhof-${VERSION}-mac.zip"
           test -f "$asset"
@@ -103,7 +103,7 @@ jobs:
           $destination = Join-Path $env:RUNNER_TEMP "dists"
           & "$env:RENPY_SDK_ROOT\renpy.exe" "$env:RENPY_SDK_ROOT\launcher" distribute `
             "$env:GITHUB_WORKSPACE" --package win --dest $destination
-          if ($LASTEXITCODE -ne 0) {
+          if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
             throw "Ren'Py Windows build failed with exit code $LASTEXITCODE."
           }
           $asset = Join-Path $destination "scheuerhof-$env:VERSION-win.zip"
@@ -146,6 +146,14 @@ jobs:
             exit 1
           fi
           echo "RENPY_SDK_ROOT=$(dirname "$sdk_script")" >> "$GITHUB_ENV"
+
+      - name: Download Ren'Py web support
+        run: |
+          curl --fail --location --retry 3 \
+            "https://www.renpy.org/dl/${RENPY_VERSION}/renpy-${RENPY_VERSION}-web.zip" \
+            --output "$RUNNER_TEMP/renpy-web.zip"
+          unzip -q "$RUNNER_TEMP/renpy-web.zip" -d "$RENPY_SDK_ROOT"
+          test -f "$RENPY_SDK_ROOT/web/index.html"
 
       - name: Build and deploy web version
         env:
