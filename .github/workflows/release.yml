@@ -46,15 +46,13 @@ jobs:
           curl --fail --location --retry 3 \
             "https://www.renpy.org/dl/${RENPY_VERSION}/renpy-${RENPY_VERSION}-sdk.dmg" \
             --output "$RUNNER_TEMP/renpy-sdk.dmg"
-          mkdir "$RUNNER_TEMP/renpy-sdk"
+          mkdir "$RUNNER_TEMP/renpy-sdk-mount" "$RUNNER_TEMP/renpy-sdk"
           hdiutil attach "$RUNNER_TEMP/renpy-sdk.dmg" \
-            -quiet -nobrowse -readonly -mountpoint "$RUNNER_TEMP/renpy-sdk"
-          sdk_script="$(find "$RUNNER_TEMP/renpy-sdk" -name renpy.sh -print -quit)"
-          if [[ -z "$sdk_script" ]]; then
-            echo "Could not find renpy.sh in the mounted SDK." >&2
-            exit 1
-          fi
-          echo "RENPY_SDK_ROOT=$(dirname "$sdk_script")" >> "$GITHUB_ENV"
+            -quiet -nobrowse -readonly -mountpoint "$RUNNER_TEMP/renpy-sdk-mount"
+          ditto "$RUNNER_TEMP/renpy-sdk-mount/renpy-${RENPY_VERSION}-sdk" "$RUNNER_TEMP/renpy-sdk"
+          hdiutil detach "$RUNNER_TEMP/renpy-sdk-mount" -quiet
+          test -x "$RUNNER_TEMP/renpy-sdk/renpy.app/Contents/MacOS/renpy"
+          echo "RENPY_SDK_ROOT=$RUNNER_TEMP/renpy-sdk" >> "$GITHUB_ENV"
 
       - name: Build macOS package
         env:
@@ -101,7 +99,7 @@ jobs:
         shell: pwsh
         run: |
           $destination = Join-Path $env:RUNNER_TEMP "dists"
-          & "$env:RENPY_SDK_ROOT\renpy.exe" "$env:RENPY_SDK_ROOT\launcher" distribute `
+          & "$env:RENPY_SDK_ROOT\lib\py3-windows-x86_64\renpy.exe" "$env:RENPY_SDK_ROOT\launcher" distribute `
             "$env:GITHUB_WORKSPACE" --package win --dest $destination
           if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
             throw "Ren'Py Windows build failed with exit code $LASTEXITCODE."
