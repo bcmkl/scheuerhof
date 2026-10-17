@@ -29,7 +29,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "0.9"
+define config.version = "0.9.1"
 
 
 ## Text that is placed on the game's about screen. To insert a blank line
@@ -55,7 +55,7 @@ Die Geschichte enthält Elemente der realen Historie des Scheuerhofs. Namentlich
 define build.name = "scheuerhof"
 
 ## Change the version used by the build system.
-define build.version = "0.9"
+define build.version = "0.9.1"
 
 ## Sounds and music ############################################################
 
